@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Primeiro exemplo com VUE</title>
+    <h2>TESTE com VUE</h2>
+    
+</head>
+<body>
+    <div id="app">
+        Mensagem:{{mensagem}}<br>
+        Valor Total:{{valorTotal}}<br>
+        Hobbie:{{hobbies[2]}}<br>
+        Função Somar: {{somar()}}<br>
+        Função Subtrair: {{subtrair()}}
+    </div>
+    <script>
+        options = {
+            el: '#app', //# para selecionar por id | se for classe utiliza-se .
+            data: {
+                mensagem: "Primeiro exemplo com VUE e DIV",
+                valorTotal: 10.45,
+                hobbies: [
+                        'dormir',
+                        'comer',
+                        'caminhar'
+                ],
+                valor1: 10,
+                valor2: 4
+                },
+
+            methods:{
+                    somar: function somar (){ // function ()
+                        return this.valor1 + this.valor2;
+                    },
+                    subtrair: function (){
+                        return this.valor1 - this.valor2
+                    }
+                }            
+        }
+
+        const vm = new Vue (options) //VM = ViewModel
+
+        //console.log(vm);
+    </script>
+
+</body>
+</html>
