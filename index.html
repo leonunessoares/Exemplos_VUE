@@ -15,7 +15,13 @@
         Valor Total:{{valorTotal}}<br>
         Hobbie:{{hobbies[2]}}<br>
         Função Somar: {{somar()}}<br>
-        Função Subtrair: {{subtrair()}}
+        Função Subtrair: {{subtrair()}}<br>
+        <a v-bind:href ="site">Site</a><br>
+        <input type="text" v-on:keypress='alerta()'>
+        <br>                
+        <button v-on:click="exibirSaldo()">{{textoSaldo}}</button>       
+ 
+        <span id="mostrasaldo" v-if="exibeSaldo">{{saldo}}</span>
     </div>
     <script>
         options = {
@@ -28,8 +34,12 @@
                         'comer',
                         'caminhar'
                 ],
+                site: 'https://www.google.com',
                 valor1: 10,
-                valor2: 4
+                valor2: 4,
+                saldo: 100.50,
+                exibeSaldo:true,
+                textoSaldo: 'Ocultar Saldo'
                 },
 
             methods:{
@@ -38,7 +48,19 @@
                     },
                     subtrair: function (){
                         return this.valor1 - this.valor2
-                    }
+                    },
+                    alerta(){
+                        alert('digitei...')
+                    },   
+                    exibirSaldo(){
+                        if (this.exibeSaldo ==true){
+                            this.exibeSaldo = false
+                            this.textoSaldo = 'Exibir Saldo'
+                        }else{
+                            this.exibeSaldo = true
+                            this.textoSaldo = 'Ocultar Saldo'
+                        }
+                    }                 
                 }            
         }
 
