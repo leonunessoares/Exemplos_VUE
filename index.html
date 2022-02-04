@@ -20,8 +20,33 @@
         <input type="text" v-on:keypress='alerta()'>
         <br>                
         <button v-on:click="exibirSaldo()">{{textoSaldo}}</button>       
- 
+        
         <span id="mostrasaldo" v-if="exibeSaldo">{{saldo}}</span>
+        <br>
+        <div v-on:mouseover="exibeDiv=true" v-on:mouseout="exibeDiv=false">Passe o mouse Aqui para exibir a DIV TESTE</div>
+        <div v-show="exibeDiv">SOU A DIV TESTE</div>
+
+        <br>
+        <div v-html="textoHTML"></div>
+        <br>
+        <div v-once="valor">Valor Inicial: {{valor}}</div>
+        <div>Valor Atual: {{valor}}</div>
+
+        <input type="text" id="valorTotalExibido">
+
+        <button v-on:click="credito()" value="creditar">Creditar</button>
+        <button v-on:click="debito()" value="debitar">Debitar</button>
+        <br>
+        <div>Exibindo um for</div>
+        <ul>
+            <li v-for="(curso, key) in cursos">{{key}} {{curso}}</li>
+        </ul>
+        <br>
+        V-Model
+        {{paciente}}
+        <br>
+        <input type="text" v-model="paciente">
+        
     </div>
     <script>
         options = {
@@ -29,6 +54,7 @@
             data: {
                 mensagem: "Primeiro exemplo com VUE e DIV",
                 valorTotal: 10.45,
+                paciente: "José Maria",
                 hobbies: [
                         'dormir',
                         'comer',
@@ -38,8 +64,12 @@
                 valor1: 10,
                 valor2: 4,
                 saldo: 100.50,
+                exibeDiv: false,
                 exibeSaldo:true,
-                textoSaldo: 'Ocultar Saldo'
+                textoSaldo: 'Ocultar Saldo',
+                textoHTML: 'Texto Exemplo',
+                valor: 1000,
+                cursos: ['lavaral','django','php','banco de dados']
                 },
 
             methods:{
@@ -60,13 +90,25 @@
                             this.exibeSaldo = true
                             this.textoSaldo = 'Ocultar Saldo'
                         }
-                    }                 
+                    },   
+                    credito(){
+                        this.valor += parseFloat(valorTotalExibido.value)
+                    },              
+                    debito(){
+                        this.valor -= parseFloat(valorTotalExibido.value)
+                    }              
                 }            
         }
 
         const vm = new Vue (options) //VM = ViewModel
 
         //console.log(vm);
+
+
+        //v-if ele renderiza o html toda vez que é executado
+        //v-show apenas oculta o html, tornando o carregamento da pagina mais rápido quando se deseja exibir ou ocultar um 
+        //bloco html
+        //v-html injeta bloco html em um atributo, como se fosse o InnerHtml do JS
     </script>
 
 </body>
